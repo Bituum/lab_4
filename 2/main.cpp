@@ -3,6 +3,8 @@
 
 
 
+
+
 int main(int argc, char const *argv[])
 {
     Matrix A{3};
@@ -14,8 +16,8 @@ int main(int argc, char const *argv[])
     std::cin >> B;
 
     Matrix C{3};
-    C = A*B;
-    C *=4;
+    C = (A - B) * ((A*A) + B);
+    C *=2;
     
     
     

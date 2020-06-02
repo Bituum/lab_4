@@ -1,6 +1,6 @@
 #include <iostream>
 #include "matrix.hpp"
- 
+#include <cmath>
 
 
 Matrix::Matrix(int number)
@@ -56,7 +56,7 @@ std::ostream& operator<< (std::ostream &out, const Matrix &m)
     {
         for (int j = 0; j < m.dimension; j++)
         {
-            out << m.elements[i][j] << "\t";
+            out << std::abs(m.elements[i][j]) << "\t";
         }
         out << std::endl;
 
@@ -114,7 +114,7 @@ Matrix operator* (const Matrix x, const Matrix y)
 
 Matrix &Matrix::operator*= (int num)
 {
-    std::cout << "ZaHOD";
+    
     //Matrix tmp(dimension);
     //elements = 0;
     for(int i = 0; i < dimension; i++)
