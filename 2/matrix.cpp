@@ -5,7 +5,6 @@
 
 Matrix::Matrix(int number)
 {
-    std::cout << "parametr_start" << std::endl;
     dimension = number;
     elements = new int*[number];
     for(int i =0; i < number; i++) 
@@ -24,7 +23,6 @@ Matrix::Matrix(int number)
 Matrix::Matrix(const Matrix &m)
 {   
     Matrix tmp{m.dimension};
-    std::cout << "copy      " << std::endl;
     dimension = tmp.dimension;
     elements = tmp.elements;
     tmp.dimension = 0;
@@ -58,9 +56,10 @@ std::ostream& operator<< (std::ostream &out, const Matrix &m)
     {
         for (int j = 0; j < m.dimension; j++)
         {
-            out << m.elements[i][j] << " ";
+            out << m.elements[i][j] << "\t";
         }
         out << std::endl;
+
     }
     return out;
 };
@@ -115,13 +114,14 @@ Matrix operator* (const Matrix x, const Matrix y)
 
 Matrix &Matrix::operator*= (int num)
 {
-    Matrix tmp(dimension);
-    tmp.elements = 0;
+    std::cout << "ZaHOD";
+    //Matrix tmp(dimension);
+    //elements = 0;
     for(int i = 0; i < dimension; i++)
-    {
+    {   
         for(int j = 0; j < dimension; j++)
         {
-            tmp.elements[i][j] += num * elements[i][j];
+            elements[i][j] = num * elements[i][j];
         }
     }
     return *this;
@@ -135,7 +135,6 @@ Matrix::~Matrix()
         delete[] elements[i];
     }
     delete[] elements;
-    std::cout << "destructor" << std::endl;
     elements = nullptr;
 };
 

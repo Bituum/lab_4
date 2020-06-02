@@ -4,19 +4,22 @@
 
 
 int main(int argc, char const *argv[])
-{std::cout << "parametr_start" << std::endl;
+{
     Matrix A{3};
 
     std::cin >> A;
     
-    //Matrix B{3};
-   
-    //std::cin >> B;
+    Matrix B{3};
+    std::cout <<"\n";
+    std::cin >> B;
 
     Matrix C{3};
+    C = A*B;
+    C *=4;
     
     
-    C = A*2;
+    
+    
     std::cout << C << "\n";
     std::cout << "YES";
         
