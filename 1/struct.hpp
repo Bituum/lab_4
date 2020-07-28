@@ -3,4 +3,5 @@
 struct Data
 {
     //TODO data
+    int i;
 };
