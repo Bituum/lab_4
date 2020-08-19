@@ -16,7 +16,7 @@ Library::Library ()
     {
         if(!pbeg)
         {
-            pend = pbeg =nullptr;
+            pend = pbeg = nullptr;
         }
         else
         {
