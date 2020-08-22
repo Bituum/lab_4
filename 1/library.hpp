@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 
@@ -16,7 +17,8 @@ class Library
         Library *next;
         Library *prev;
         int sum;
-
+        
+        //static roots for list
         static Library *pbeg;
         static Library *pend;
 
@@ -24,4 +26,10 @@ class Library
     public:
         Library();
         ~Library();
+        
+        static void add();        
+        static void take();
+
+        friend std::istream &operator>> (std::istream&, Library*);
+        friend std::ostream &operator<< (std::ostream&, Library*);
 };

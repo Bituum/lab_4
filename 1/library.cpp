@@ -1,4 +1,5 @@
 #include "library.hpp"
+#include <istream>
 
 
 Library *Library::pbeg = nullptr;
@@ -14,6 +15,7 @@ Library::Library ()
     next(nullptr),
     prev(nullptr)
     {
+        std::cout << "yey";
         if(!pbeg)
         {
             pend = pbeg = nullptr;
@@ -27,4 +29,23 @@ Library::Library ()
         }
     }
     
+void Library::add()
+{
+    std::cout << "1";
+    Library *top = new Library;
+    while(top->next != nullptr)
+    {
+        top = top->next;
+    }
+
+    Library *lib = new Library;
+    lib->next = nullptr;
+    lib->prev = top;
+    std::cout << "2";
+}
+
+std::istream& operator>>(std::istream&, Library*)
+{
+    
+}
 
