@@ -25,11 +25,12 @@ class Library
 
     public:
         Library();
-        ~Library();
-        
+        ~Library();        
         static void add();        
         static void take();
-
-        friend std::istream &operator>> (std::istream&, Library*);
-        friend std::ostream &operator<< (std::ostream&, Library*);
+        static void showInfo();
+        static void takeABook();
+        friend std::istream &operator>> (std::istream &in, Library *lib);
+        friend std::ostream &operator<< (std::ostream&, const Library *lib);
+        friend bool operator==(const Library &first, const Library &second);
 };

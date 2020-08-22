@@ -23,21 +23,29 @@
 int main()
 {
     short int key;
-    std::cin >> key;
-
+    
+    while(true){
     std::cout <<
-        "Enter the function: 1. Add new elements.....";
+        "Enter the function: 1. Add new elements....." << std::endl <<
+        "2. Show information ";
+    
+        std::cin >> key;
+        switch(key)                                          
+        {                                                    
+            case 1:
+                Library::add();
+                break;
+            case 2:
+                Library::showInfo();
+                break;
+            case 3:
+                Library::takeABook();
+                break;
+            default: std::cout << " error! ";
+                break;
+        }
 
-    switch(key)
-    {
-        case 1:
-            Library::add();
-            break;
-        case 2:
-            break;
-        case 3:
-        default: std::cout << "Poshel nahui";
-            break;
     }
+   
     return 0;
 }
