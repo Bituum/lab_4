@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include "library.hpp"
 
@@ -23,17 +24,23 @@
 int main()
 {
     short int key;
-    
-    while(true){
+    bool exitkey = true;
+    while(exitkey){
     std::cout <<
-        "Enter the function: 1. Add new elements....." << std::endl <<
-        "2. Show information ";
+        "\n Enter the function:" << 
+        "1.\tAdd new elements..." << std::endl <<
+        "2.\tShow information... \n" <<
+        "3:\tTake a book... \n" <<
+        "4:\tBring a book...\n" <<
+        "5:\tExit\n"
+        ;
     
         std::cin >> key;
         switch(key)                                          
         {                                                    
             case 1:
                 Library::add();
+                std::system("clear");
                 break;
             case 2:
                 Library::showInfo();
@@ -41,6 +48,12 @@ int main()
             case 3:
                 Library::takeABook();
                 break;
+            case 4:
+                Library::bringABook();
+                break;
+            case 5:
+               exitkey = false;
+               break;
             default: std::cout << " error! ";
                 break;
         }

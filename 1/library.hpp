@@ -30,7 +30,11 @@ class Library
         static void take();
         static void showInfo();
         static void takeABook();
+        static void bringABook();
         friend std::istream &operator>> (std::istream &in, Library *lib);
         friend std::ostream &operator<< (std::ostream&, const Library *lib);
         friend bool operator==(const Library &first, const Library &second);
 };
+
+int int_check(void);
+
