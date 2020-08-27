@@ -27,7 +27,7 @@ int main()
     bool exitkey = true;
     while(exitkey){
     std::cout <<
-        "\n Enter the function:" << 
+        "\n Enter the function:\n" << 
         "1.\tAdd new elements..." << std::endl <<
         "2.\tShow information... \n" <<
         "3:\tTake a book... \n" <<

@@ -1,6 +1,8 @@
 #include "library.hpp"
+#include <cstdlib>
 #include <iostream>
 #include <istream>
+#include <iterator>
 #include <string>
 #include <algorithm>
 
@@ -21,6 +23,44 @@ int int_check(void)
                
     return tmp;
 }
+
+int date_check()
+{
+    int tmp = int_check();
+    bool trigger = true;
+    do {
+        if(tmp < 1300 || tmp > 2020)
+        {
+            std::system("clear");
+            std::cout << "\n\tIncorect date!\n";
+            break;
+        }
+        else
+        {
+            trigger = false;
+        }
+    }while (trigger);
+    return tmp;
+}
+
+/*std::string word_check(std::string string)
+{
+    std::string str;
+    int counter = 0;
+    str = string;
+
+    for(int i = 0; i < str.size(); i++)
+    {
+        if((str[i] == ' ' ||  str[i] == '\t') && (str[i+1] == ' ' || str[i+1] == '\t'))
+        {
+            counter++;                                                                                                                   
+            str.erase(i, counter);
+            str[i] = '\0';
+        }
+    }
+            
+    return str; 
+}*/
 
 Library *Library::pbeg = nullptr;
 Library *Library::pend = nullptr;
@@ -72,10 +112,10 @@ void Library::add() {
 }
 std::istream& operator>>(std::istream &in,Library *lib)
 {
-    
+    //std::string tmpstr;
     std::cout << "Enter the author name " <<"\n";
     std::cin.ignore(1);
-    std::getline(in,lib->name);
+    getline(in, lib->name);
     std::cout << "Enter the author second name " << "\n";
     std::cin.ignore(-1);
     std::getline(in, lib->secname);
@@ -84,9 +124,10 @@ std::istream& operator>>(std::istream &in,Library *lib)
     std::getline(in, lib->title);
     std::cout << "Enter the count of this book\n";
     lib->sum = int_check();
-    std::cout << "Enter the udk number\n";
+    std::cout << "Enter udk number\n";
     lib->udk = int_check();
-    lib->year = int_check(); //dateCheck
+    std::cout << "Enter the year of publishing\n";
+    lib->year = date_check();
     return in;
 }
 
@@ -95,7 +136,9 @@ std::ostream& operator<<(std::ostream &out, const Library*lib)
     "Name:       " << lib->name << std::endl
     << "Secname:    " << lib->secname << std::endl
     << "title:      " << lib->title << std::endl
-    << "count:      " << lib->sum << std::endl;
+    << "count:      " << lib->sum << std::endl
+    << "udk:        " << lib->udk << std::endl
+    << "year:       " <<lib->year << std::endl;
     return out;
 }
 
@@ -111,12 +154,14 @@ void Library::showInfo()
         std::cout << tmp;
         tmp = tmp->next;
     }
+    std::cout << "\n";
 }
 
 
 bool operator==(const Library &first, const Library &second)
 {
-    return(first.name == second.name && first.secname == second.secname && first.title == second.title);
+    return(first.name == second.name && first.secname == second.secname && first.title == second.title && first.udk == second.udk
+          && first.year == second.year);
 }
 
 
@@ -159,7 +204,7 @@ void Library::takeABook()
             {
                 if(lib->sum == 0)
                 {
-                    std::cout << "There are no book in the library!!";
+                    std::cout << "There are no book in the library!!\n";
                 }
                 else
                 {
@@ -189,41 +234,4 @@ void Library::bringABook()
         }    
 }
 
-/*std::istream &operator>>(std::istream &in, std::string &string)
-{
-    do {
-        if (std::any_of(string.begin(), string.end(),
-                    [](const auto p) { return isdigit(p); }) ||
-        std::all_of(string.begin(), string.end(),
-                    [](const auto p) { return (p == ' ' || p == '\t'); }) ||
-        string.empty()) {
-      std::cerr << "\nНекорректный ввод\n" << std::endl;
-      continue;
-    }
-
-    for (int i = 0; i < string.size(); i++) {
-      if (i == 0 && (string[i] == ' ' || string[i] == '\t')) {
-        int count = 0;
-        for (int j = i; string[j] == ' ' || string[j] == '\t'; j++)
-          count++;
-        string.erase(0, count);
-        continue;
-      }
-
-      int count = 0;
-      if ((string[i] == ' ' || string[i] == '\t') &&
-          (string[i + 1] == ' ' || string[i + 1] == '\t' || string[i + 1] == '\0')) {
-        for (int j = i;
-            string[j + 1] == ' ' || string[j + 1] == '\t' || string[j + 1] == '\0'; j++)
-          count++;
-        string.erase(i, count);
-      }
-    }
-
-    break;
-  }
-while (true);
-    return in;
-}
-*/
 

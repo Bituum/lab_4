@@ -36,5 +36,6 @@ class Library
         friend bool operator==(const Library &first, const Library &second);
 };
 
+std::string word_check(void);
 int int_check(void);
 
